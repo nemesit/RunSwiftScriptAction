@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		425FC9051DDDFB0E00238440 /* Run_Swift_Script.m in Sources */ = {isa = PBXBuildFile; fileRef = 425FC9041DDDFB0E00238440 /* Run_Swift_Script.m */; };
 		425FC9081DDDFB0E00238440 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 425FC9061DDDFB0E00238440 /* main.xib */; };
 		425FC90C1DDDFB0E00238440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 425FC90A1DDDFB0E00238440 /* InfoPlist.strings */; };
+		425FC9161DDDFD0D00238440 /* RunTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425FC9151DDDFD0D00238440 /* RunTask.swift */; };
+		425FC9191DDDFDEB00238440 /* Run_Swift_Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425FC9181DDDFDEB00238440 /* Run_Swift_Script.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		425FC9001DDDFB0E00238440 /* Run Swift Script.action */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Run Swift Script.action"; sourceTree = BUILT_PRODUCTS_DIR; };
-		425FC9031DDDFB0E00238440 /* Run_Swift_Script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Run_Swift_Script.h; sourceTree = "<group>"; };
-		425FC9041DDDFB0E00238440 /* Run_Swift_Script.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Run_Swift_Script.m; sourceTree = "<group>"; };
 		425FC9071DDDFB0E00238440 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/main.xib; sourceTree = "<group>"; };
 		425FC9091DDDFB0E00238440 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		425FC90B1DDDFB0E00238440 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		425FC9151DDDFD0D00238440 /* RunTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTask.swift; sourceTree = "<group>"; };
+		425FC9171DDDFD2B00238440 /* Run Swift Script-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Run Swift Script-Bridging-Header.h"; sourceTree = "<group>"; };
+		425FC9181DDDFDEB00238440 /* Run_Swift_Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run_Swift_Script.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,9 @@
 		425FC9021DDDFB0E00238440 /* Run Swift Script */ = {
 			isa = PBXGroup;
 			children = (
-				425FC9031DDDFB0E00238440 /* Run_Swift_Script.h */,
-				425FC9041DDDFB0E00238440 /* Run_Swift_Script.m */,
+				425FC9181DDDFDEB00238440 /* Run_Swift_Script.swift */,
+				425FC9151DDDFD0D00238440 /* RunTask.swift */,
+				425FC9171DDDFD2B00238440 /* Run Swift Script-Bridging-Header.h */,
 				425FC9061DDDFB0E00238440 /* main.xib */,
 				425FC9091DDDFB0E00238440 /* Info.plist */,
 				425FC90A1DDDFB0E00238440 /* InfoPlist.strings */,
@@ -93,6 +96,7 @@
 					425FC8FF1DDDFB0E00238440 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = RH89HEC84R;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -148,7 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				425FC9051DDDFB0E00238440 /* Run_Swift_Script.m in Sources */,
+				425FC9161DDDFD0D00238440 /* RunTask.swift in Sources */,
+				425FC9191DDDFDEB00238440 /* Run_Swift_Script.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,13 +269,20 @@
 		425FC9101DDDFB0E00238440 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = RH89HEC84R;
 				INFOPLIST_FILE = "Run Swift Script/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Automator";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_OSAFLAGS = "-x -t 0 -c 0";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.felixgrabowski.Run-Swift-Script";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Run Swift Script/Run Swift Script-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = action;
 			};
 			name = Debug;
@@ -278,13 +290,19 @@
 		425FC9111DDDFB0E00238440 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = RH89HEC84R;
 				INFOPLIST_FILE = "Run Swift Script/Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Automator";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				OTHER_OSAFLAGS = "-x -t 0 -c 0";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.felixgrabowski.Run-Swift-Script";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Run Swift Script/Run Swift Script-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = action;
 			};
 			name = Release;

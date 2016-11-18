@@ -1,11 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Run_Swift_Script">
             <connections>
+                <outlet property="textView" destination="jgw-Er-A5F" id="aYh-XG-Ljo"/>
                 <outlet property="view" destination="47Y-Ci-255" id="jdu-ND-x6j"/>
             </connections>
         </customObject>
@@ -24,7 +27,40 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3f-gR-tlf">
+                    <rect key="frame" x="0.0" y="0.0" width="400" height="85"/>
+                    <clipView key="contentView" id="bTO-Jg-6Hg">
+                        <rect key="frame" x="1" y="1" width="398" height="83"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="jgw-Er-A5F">
+                                <rect key="frame" x="0.0" y="0.0" width="398" height="83"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="minSize" width="398" height="83"/>
+                                <size key="maxSize" width="463" height="10000000"/>
+                                <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="eGe-2l-AOa">
+                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="EgK-R0-FoO">
+                        <rect key="frame" x="383" y="1" width="16" height="83"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
             </subviews>
+            <constraints>
+                <constraint firstItem="D3f-gR-tlf" firstAttribute="top" secondItem="47Y-Ci-255" secondAttribute="top" id="B9o-b9-15Z"/>
+                <constraint firstAttribute="trailing" secondItem="D3f-gR-tlf" secondAttribute="trailing" id="IcQ-CW-xz3"/>
+                <constraint firstItem="D3f-gR-tlf" firstAttribute="leading" secondItem="47Y-Ci-255" secondAttribute="leading" id="U9b-bY-iD6"/>
+                <constraint firstAttribute="bottom" secondItem="D3f-gR-tlf" secondAttribute="bottom" id="VcX-nk-VU6"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="168.5"/>
         </customView>
         <objectController id="aFj-Nx-tzi" userLabel="Parameters">
             <connections>
