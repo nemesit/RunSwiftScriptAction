@@ -35,6 +35,8 @@ enum SwiftError: Error, CustomNSError {
         case .noScript:
             return [:]
         case .scriptError(let message):
+            /// the docs say OSAScriptErrorMessage should work - it doesn't
+            /// therefore NSLocalizedDescriptionKey gets the job done
             return [OSAScriptErrorNumber : errOSAScriptError, OSAScriptErrorMessage : message, NSLocalizedDescriptionKey: message]
         }
     }
@@ -61,27 +63,9 @@ class Run_Swift_Script: AMBundleAction, NSTextViewDelegate {
     override func run(withInput input: Any?) throws -> Any {
         guard let params = parameters else { throw SwiftError.noParameters }
         guard let script: String = params.object(forKey: "script" as NSString) as? String else { throw SwiftError.noScript }
-        if script.isEmpty { return [""] } // TODO: complete whitespace check
-        
-//        let swiftOutput = try runSwift(script: script)
-//        return ["\(swiftOutput)"]
-        
-        do {
-            let swiftOutput = try runSwift(script: script)
-            return ["\(swiftOutput)"]
-        } catch {
-            throw error
-//            return ["\(error)"]
-//            let userInfo: [String : Any] = [OSAScriptErrorNumber: errOSAScriptError, OSAScriptErrorMessage: "DESCRIPTION of the problem"]
-////            let userInfo: [String : Any] = [OSAScriptErrorMessage: "what the fuck"]
-//            var err = NSError()
-//            err.userInfo = userInfo
-//            throw err
-//            throw NSError(domain: "Swift script", code: errOSAScriptError, userInfo: userInfo)
-//            return ""
-        }
-        
-//        return ["\(swiftOutput)"]
+        if script.isEmpty { return [] } // TODO: complete whitespace check
+        let swiftOutput = try runSwift(script: script)
+        return ["\(swiftOutput)"]
     }
     
     /// avoiding cocoa bindings
