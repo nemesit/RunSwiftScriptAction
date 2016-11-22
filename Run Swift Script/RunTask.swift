@@ -19,7 +19,18 @@ internal func getOutput(_ p: Pipe) -> String {
     return output
 }
 
-internal func runSwift(script code: String) -> String {
+/// split strings into buffer sized chunks
+extension String {
+    func components(withLength length: Int) -> [String] {
+        return stride(from: 0, to: self.characters.count, by: length).map {
+            let start = self.index(self.startIndex, offsetBy: $0)
+            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
+            return self[start..<end]
+        }
+    }
+}
+
+internal func runSwift(script code: String) throws -> String {
     let p = Process()
     p.launchPath = "/usr/bin/swift"
     p.arguments = ["/dev/stdin"] // no welcome message and no repl mode
@@ -27,21 +38,56 @@ internal func runSwift(script code: String) -> String {
     /// Input/Output Pipes
     let stdin = Pipe()
     let stdout = Pipe()
+    let stderr = Pipe()
     p.standardInput = stdin
     p.standardOutput = stdout
-
-    /// write code to stdin
+    p.standardError = stderr
+    
+    
+    /// standard input
     let inHandle = stdin.fileHandleForWriting
-    inHandle.write(code.data(using: String.Encoding.utf8)!)
-    inHandle.closeFile()
-
+    inHandle.writeabilityHandler = { pipeHandle in
+        let splitString = code.components(withLength: 4000)
+        for str in splitString {
+            pipeHandle.write(str.data(using: String.Encoding.utf8)!)
+        }
+        inHandle.writeabilityHandler = nil
+        inHandle.closeFile()
+    }
+    
+    
+    /// output
+    var output = ""
+    let outHandle = stdout.fileHandleForReading
+    outHandle.readabilityHandler = { pipeHandle in
+        if let line = String(data: pipeHandle.availableData, encoding: String.Encoding.utf8) {
+            output += line
+        } else {
+            outHandle.readabilityHandler = nil
+            outHandle.closeFile()
+        }
+        
+    }
+    /// error
+    var error = ""
+    let errHandle = stderr.fileHandleForReading
+    errHandle.readabilityHandler = { pipeHandle in
+        if let line = String(data: pipeHandle.availableData, encoding: String.Encoding.utf8) {
+            error += line
+        } else {
+            errHandle.readabilityHandler = nil
+            errHandle.closeFile()
+        }
+    }
+    
     /// start process
     p.launch()
     p.waitUntilExit()
 
-    /// retrieve output from stdout
-    let output = getOutput(stdout)
-    /// return output
+    
+    if !error.isEmpty {
+        throw(SwiftError.scriptError(error))
+    }
     return output
 }
 //

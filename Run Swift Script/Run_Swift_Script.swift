@@ -9,8 +9,35 @@
 import Foundation
 import Automator
 
-enum SwiftError: Error {
-    case noParameters, noScript
+enum SwiftError: Error, CustomNSError {
+    case noParameters
+    case noScript
+    case scriptError(String)
+    
+    static var errorDomain: String {
+        return "ScriptError"
+    }
+    
+    var errorCode: Int {
+        switch self {
+        case .noParameters:
+            return 0
+        case .noScript:
+            return 1
+        case .scriptError(_):
+            return errOSAScriptError
+        }
+    }
+    var errorUserInfo: [String : Any] {
+        switch self {
+        case .noParameters:
+            return [:]
+        case .noScript:
+            return [:]
+        case .scriptError(let message):
+            return [OSAScriptErrorNumber : errOSAScriptError, OSAScriptErrorMessage : message, NSLocalizedDescriptionKey: message]
+        }
+    }
 }
 
 
@@ -35,8 +62,26 @@ class Run_Swift_Script: AMBundleAction, NSTextViewDelegate {
         guard let params = parameters else { throw SwiftError.noParameters }
         guard let script: String = params.object(forKey: "script" as NSString) as? String else { throw SwiftError.noScript }
         if script.isEmpty { return [""] } // TODO: complete whitespace check
-        let swiftOutput = runSwift(script: script)
-        return ["\(swiftOutput)"]
+        
+//        let swiftOutput = try runSwift(script: script)
+//        return ["\(swiftOutput)"]
+        
+        do {
+            let swiftOutput = try runSwift(script: script)
+            return ["\(swiftOutput)"]
+        } catch {
+            throw error
+//            return ["\(error)"]
+//            let userInfo: [String : Any] = [OSAScriptErrorNumber: errOSAScriptError, OSAScriptErrorMessage: "DESCRIPTION of the problem"]
+////            let userInfo: [String : Any] = [OSAScriptErrorMessage: "what the fuck"]
+//            var err = NSError()
+//            err.userInfo = userInfo
+//            throw err
+//            throw NSError(domain: "Swift script", code: errOSAScriptError, userInfo: userInfo)
+//            return ""
+        }
+        
+//        return ["\(swiftOutput)"]
     }
     
     /// avoiding cocoa bindings
