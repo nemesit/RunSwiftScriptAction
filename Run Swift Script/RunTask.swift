@@ -8,7 +8,7 @@
 
 import Foundation
 
-func getOutput(_ p: Pipe) -> String {
+internal func getOutput(_ p: Pipe) -> String {
     let outHandle = p.fileHandleForReading
     let data = outHandle.readDataToEndOfFile()
     outHandle.closeFile()
@@ -19,7 +19,7 @@ func getOutput(_ p: Pipe) -> String {
     return output
 }
 
-func run(swiftCode code: String) -> String {
+internal func runSwift(script code: String) -> String {
     let p = Process()
     p.launchPath = "/usr/bin/swift"
     p.arguments = ["/dev/stdin"] // no welcome message and no repl mode
