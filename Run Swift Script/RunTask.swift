@@ -31,6 +31,9 @@ extension String {
 }
 
 internal func runSwift(script code: String) throws -> String {
+    var code = code
+    let transferCode = "import Foundation;let input = UserDefaults(suiteName: \"com.felixgrabowski.RunSwiftScript\")?.stringArray(forKey: \"input\");"
+    code = transferCode + code
     let p = Process()
     p.launchPath = "/usr/bin/swift"
     p.arguments = ["/dev/stdin"] // no welcome message and no repl mode
@@ -90,18 +93,3 @@ internal func runSwift(script code: String) throws -> String {
     }
     return output
 }
-//
-//    override func run(withInput input: Any?) throws -> Any {
-//        //        let output = run(swiftCode: "print(5)")
-//        guard let params = self.parameters else { return "could not load parameters" }
-//        guard let swiftCode = params.object(forKey: "swiftCode") else { return "key not found for swiftCode" }
-//        guard let code: String = swiftCode as? String else { return "code not in string form" }
-//        if code.isEmpty { return "no code \(params)" }
-//        //        return "\(code)" + "print(\"whohoo\")"
-//        let output = run(swiftCode: code)
-//
-//        return output
-//        //        let output = run(swiftCode: "print(5)")
-//        //        /// return output
-//        //        return output
-//    }

@@ -11,6 +11,7 @@
 		425FC90C1DDDFB0E00238440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 425FC90A1DDDFB0E00238440 /* InfoPlist.strings */; };
 		425FC9161DDDFD0D00238440 /* RunTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425FC9151DDDFD0D00238440 /* RunTask.swift */; };
 		425FC9191DDDFDEB00238440 /* Run_Swift_Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425FC9181DDDFDEB00238440 /* Run_Swift_Script.swift */; };
+		425FC91D1DE4C97800238440 /* SwiftScript.icns in Resources */ = {isa = PBXBuildFile; fileRef = 425FC91C1DE4C97800238440 /* SwiftScript.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		425FC9151DDDFD0D00238440 /* RunTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunTask.swift; sourceTree = "<group>"; };
 		425FC9171DDDFD2B00238440 /* Run Swift Script-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Run Swift Script-Bridging-Header.h"; sourceTree = "<group>"; };
 		425FC9181DDDFDEB00238440 /* Run_Swift_Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run_Swift_Script.swift; sourceTree = "<group>"; };
+		425FC91C1DE4C97800238440 /* SwiftScript.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SwiftScript.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				425FC9171DDDFD2B00238440 /* Run Swift Script-Bridging-Header.h */,
 				425FC9061DDDFB0E00238440 /* main.xib */,
 				425FC9091DDDFB0E00238440 /* Info.plist */,
+				425FC91C1DE4C97800238440 /* SwiftScript.icns */,
 				425FC90A1DDDFB0E00238440 /* InfoPlist.strings */,
 			);
 			path = "Run Swift Script";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				425FC9081DDDFB0E00238440 /* main.xib in Resources */,
+				425FC91D1DE4C97800238440 /* SwiftScript.icns in Resources */,
 				425FC90C1DDDFB0E00238440 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

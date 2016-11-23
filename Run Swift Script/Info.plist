@@ -11,16 +11,18 @@
 		<key>Types</key>
 		<array>
 			<string>com.apple.cocoa.path</string>
+			<string>com.apple.cocoa.string</string>
+			<string>com.apple.cocoa.url</string>
 		</array>
 	</dict>
 	<key>AMApplication</key>
-	<string>(* Primary Application used by this action goes here. *)</string>
+	<string>Automator</string>
 	<key>AMCanShowSelectedItemsWhenRun</key>
 	<false/>
 	<key>AMCanShowWhenRun</key>
 	<true/>
 	<key>AMCategory</key>
-	<string>(* Category of this action goes here. *)</string>
+	<string>AMCategoryUtilities</string>
 	<key>AMDefaultParameters</key>
 	<dict/>
 	<key>AMDescription</key>
@@ -40,12 +42,12 @@
 		<key>AMDResult</key>
 		<string>(* AMDResult text to further explain the types provided as output goes here. (optional) *)</string>
 		<key>AMDSummary</key>
-		<string>(* AMDSummary text to explain what your action does goes here. *)</string>
+		<string>Run Swift code in Automator</string>
 		<key>AMDWebsite</key>
 		<string>(* AMDWebsite URL to additional information or documentation for the action goes here. (optional) *)</string>
 	</dict>
 	<key>AMIconName</key>
-	<string>(* The name of the icon *)</string>
+	<string>SwiftScript</string>
 	<key>AMKeywords</key>
 	<array/>
 	<key>AMName</key>
@@ -57,6 +59,8 @@
 		<key>Types</key>
 		<array>
 			<string>com.apple.cocoa.path</string>
+			<string>com.apple.cocoa.string</string>
+			<string>com.apple.cocoa.url</string>
 		</array>
 	</dict>
 	<key>AMRequiredResources</key>

@@ -42,8 +42,26 @@ enum SwiftError: Error, CustomNSError {
     }
 }
 
-
-
+/// saves the input into userdefaults so that the script can use it too
+/// input should be Array<String> else figure out the wanted type with dump(input)
+/// if it is not Array<String> then it's retrieval method also needs to be changed e.g. from .stringArray(forKey... to .object(forKey...
+func transferInput(_ input: Any?) throws {
+    guard let input = input as? Array<String> else { return }
+//    switch input {
+//    case is Array<String>:
+//        throw SwiftError.scriptError("Array<String>")
+//    case is String:
+//        throw SwiftError.scriptError("String")
+//    case is NSURL:
+//        throw SwiftError.scriptError("NSURL")
+//    default:
+//        throw SwiftError.scriptError("\(dump(input))")
+//    }
+    
+    
+    /// get input to where the script can find it
+    UserDefaults(suiteName: "com.felixgrabowski.RunSwiftScript")?.setValue(input, forKey: "input")
+}
 
 class Run_Swift_Script: AMBundleAction, NSTextViewDelegate {
     var changeVar = "not working"
@@ -64,6 +82,9 @@ class Run_Swift_Script: AMBundleAction, NSTextViewDelegate {
         guard let params = parameters else { throw SwiftError.noParameters }
         guard let script: String = params.object(forKey: "script" as NSString) as? String else { throw SwiftError.noScript }
         if script.isEmpty { return [] } // TODO: complete whitespace check
+        
+        try transferInput(input)
+        
         let swiftOutput = try runSwift(script: script)
         return ["\(swiftOutput)"]
     }
@@ -81,8 +102,5 @@ class Run_Swift_Script: AMBundleAction, NSTextViewDelegate {
         params.setObject(script, forKey: "script" as NSString)
     }
 //    override func parametersUpdated() {
-//        guard let script: String = parameters?.object(forKey: "script" as NSString) as? String else { return }
-//        guard let text = textView else { return }
-//        text.string = script
 //    }
 }
