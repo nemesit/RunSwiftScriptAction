@@ -1,4 +1,4 @@
-![SwiftScriptIcon][]
+<img src="https://github.com/nemesit/RunSwiftScriptAction/blob/master/Run%20Swift%20Script/SwiftScript.icns?raw=true" width="200">
 
 # RunSwiftScriptAction
 An Automator action that lets people run Swift code instead of AppleScript or JavaScript for Automation.
@@ -10,7 +10,7 @@ Anything it outputs to standard output e.g. via `print(_:)` gets passed back to 
 
 
 
-[SwiftScriptIcon]: https://github.com/nemesit/RunSwiftScriptAction/blob/master/Run%20Swift%20Script/SwiftScript.icns?raw=true "SwiftScriptIcon" height=200px width=200px
+
 
   
   
