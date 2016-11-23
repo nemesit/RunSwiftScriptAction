@@ -1,10 +1,10 @@
 <img src="https://github.com/nemesit/RunSwiftScriptAction/blob/master/Run%20Swift%20Script/SwiftScript.icns?raw=true" width="200">
 
 # RunSwiftScriptAction
-An Automator action that lets people run Swift code instead of AppleScript or JavaScript for Automation.
+An Automator action that lets people run Swift code instead of AppleScript or JavaScript for Automation.  
 
-The Action can access it's input from other Automator actions by accessing the `input` optional which is of type `Optional(Array<String>)`
-Anything it outputs to standard output e.g. via `print(_:)` gets passed back to Automator and can be used as input for other Actions.
+The Action can access it's input from other Automator actions by accessing the `input` optional, which is of type `Optional(Array<String>)`  
+Anything that the action's Swift code outputs to standard output, e.g. via `print(_:)` gets passed back to Automator and can be used as input for other Actions.  
 
 
 
